@@ -214,8 +214,8 @@ export default class MockProvider implements IProvider {
         add_trackers_from_url_enabled: false,
         add_trackers_url: '',
         add_trackers_url_list: '',
-        alt_dl_limit: 10240,
-        alt_up_limit: 10240,
+        alt_dl_limit: 1_007_616, // demo: 984 KiB/s, the case from the issue screenshot
+        alt_up_limit: 1_007_616,
         alternative_webui_enabled: true,
         alternative_webui_path: '/vuetorrent',
         announce_ip: '',
@@ -1170,8 +1170,8 @@ export default class MockProvider implements IProvider {
 
     const alltime_dl = faker.number.int({ min: 0, max: 50_000_000_000_000 }) // [0 B; 50 TB]
     const alltime_ul = faker.number.int({ min: 0, max: 50_000_000_000_000 }) // [0 B; 50 TB]
-    const dl_rate_limit = 94_000_000 // ~750 Mbps
-    const up_rate_limit = 94_000_000 // ~750 Mbps
+    const dl_rate_limit = 1_007_616 // demo: alternative limit active
+    const up_rate_limit = 1_007_616
     const server_state = {
       alltime_dl,
       alltime_ul,
@@ -1195,7 +1195,7 @@ export default class MockProvider implements IProvider {
       up_info_data: faker.number.int({ min: 0, max: 100_000_000_000 }), // [0 B; 100 GB]
       up_info_speed: faker.number.int({ min: 0, max: up_rate_limit || 125_000_000 }), // [0 b/s; 1 Gb/s]
       up_rate_limit,
-      use_alt_speed_limits: false,
+      use_alt_speed_limits: true,
       use_subcategories: false,
       write_cache_overload: faker.number.int({ min: 0, max: 100 }).toString(),
     }
